@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';
+// import 'package:gallery_saver/gallery_saver.dart';
 
 class ViewPhotos extends StatefulWidget {
   final String imgPath;
@@ -72,6 +73,12 @@ class _ViewPhotosState extends State<ViewPhotos> {
           onPressed: () async {
             _onLoading(true);
             Uri myUri = Uri.parse(widget.imgPath);
+            // print("this is the path${myUri.path}");
+            // String path=myUri.path.toString();
+            // GallerySaver.saveImage(path).then((value) {
+            //   print("image saved $value" );
+            // });
+            
             File originalImageFile = new File.fromUri(myUri);
             Uint8List bytes;
             await originalImageFile.readAsBytes().then((value) {

@@ -29,6 +29,7 @@ dependencies:
   thumbnails: ^1.0.1
   video_player: ^0.10.9+2
   provider: ^4.1.1
+  # gallery_saver: ^2.0.1
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'MyHome.dart';
 import 'package:whatsappstatusdownloader/GlobalState.dart';
+
+
 
 void main() {
   runApp(App());
@@ -41,10 +45,12 @@ class MyAppState extends State<MyApp> {
       Navigator.of(context).pushAndRemoveUntil(route, (Route<dynamic> route)=>false);
     }
   }
+  
 
   @override
   void initState() {
     requestPermission(Permission.storage);
+    
     super.initState();
   }
 

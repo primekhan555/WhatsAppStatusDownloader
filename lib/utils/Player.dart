@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
 import 'package:whatsappstatusdownloader/GlobalState.dart';
+// import 'package:gallery_saver/gallery_saver.dart';
+
 
 class Player extends StatefulWidget {
   final String videoFile;
@@ -111,17 +113,25 @@ class _PlayerState extends State<Player> {
           onPressed: () async {
             _onLoading(true);
             File originalVideoFile = File(widget.videoFile);
-            List<String> list = originalVideoFile.path.toString().split("/");
+            // String path=originalVideoFile.path.toString();
+            // GallerySaver.saveVideo(path).whenComplete((){
+            //   print("completed");
+            // });
+            List<String> listslash = originalVideoFile.path.toString().split("/");
+            String withext=listslash[listslash.length-1];
+            List<String> outext=withext.split(".");
+
             // Directory directory = await getExternalStorageDirectory();
             if (!Directory(
-                    "/storage/emulated/0/whatsappstatusdownloader/Videos")
+                    "/storage/emulated/0/DCIM/whatsappstatusdownloader")
                 .existsSync()) {
-              Directory("/storage/emulated/0/whatsappstatusdownloader/Videos")
+              Directory("/storage/emulated/0/DCIM/whatsappstatusdownloader")
                   .createSync(recursive: true);
             }
-            String name = list[list.length - 1];
+            String name = outext[0];
+            print(name);
             String newName =
-                "/storage/emulated/0/whatsappstatusdownloader/Videos/'$name'.mp4";
+                "/storage/emulated/0/DCIM/whatsappstatusdownloader/$name.mp4";
             await originalVideoFile.copy(newName);
 
             _onLoading(false);
@@ -136,7 +146,7 @@ class _PlayerState extends State<Player> {
                   text: "If not in Gallary\nFind all images at ",
                   style: TextStyle(fontWeight: FontWeight.w700)),
               TextSpan(
-                  text: "FileManager > whatsappstatusdownloader",
+                  text: "FileManager> DCIM > whatsappstatusdownloader",
                   style: TextStyle(color: Colors.teal))
             ]))));
           }),

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:thumbnails/thumbnails.dart';
 import 'package:whatsappstatusdownloader/utils/Player.dart';
 
+
 final Directory _videoDir =
     new Directory('/storage/emulated/0/WhatsApp/Media/.Statuses');
 
@@ -26,9 +27,14 @@ class VideoScreenState extends State<VideoScreen> {
         .map((item) => item.path)
         .where((item) => item.endsWith(".mp4"))
         .toList(growable: false);
+        print("fsdfsafsafdsadf ${videoList.length}");
     super.initState();
   }
-
+@override
+  void dispose() {
+    videoList=[];
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     if (!Directory("${_videoDir.path}").existsSync()) {
@@ -47,7 +53,7 @@ class VideoScreenState extends State<VideoScreen> {
                       margin:
                           EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
                       child: GridView.builder(
-                          itemCount: videoList.length,
+                          itemCount: videoList.length-16,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
@@ -100,10 +106,11 @@ class VideoScreenState extends State<VideoScreen> {
                                                           Icons.videocam,
                                                           color: Colors
                                                               .purple[300],
-                                                              size: 40,
+                                                          size: 40,
                                                         )));
                                               }
-                                            }))));
+                                            })
+                                            )));
                           }))
                   : Container(
                       child: Center(

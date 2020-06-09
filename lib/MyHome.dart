@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ui/BusinessVideoScreen.dart';
 import 'ui/ImageScreen.dart';
 import 'ui/VideoScreen.dart';
 
@@ -7,7 +8,7 @@ class MyHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           backgroundColor: Colors.white,
           key: _scaffoldKey,
@@ -23,6 +24,9 @@ class MyHome extends StatelessWidget {
                     text: "VIDEOS",
                   ),
                   Tab(
+                    text: "BIZ. VIDEOS",
+                  ),
+                  Tab(
                     text: "IMAGES",
                   ),
                 ]),
@@ -30,8 +34,8 @@ class MyHome extends StatelessWidget {
           body: TabBarView(
             children: [
               VideoScreen(),
+              BusinessVideoScreen(),
               ImageScreen(),
-              
             ],
           ),
         ));

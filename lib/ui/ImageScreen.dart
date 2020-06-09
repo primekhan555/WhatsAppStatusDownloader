@@ -21,6 +21,11 @@ class ImageScreenState extends State<ImageScreen> {
         .toList(growable: false);
     super.initState();
   }
+  @override
+  void dispose() {
+    imageList=[];
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +41,7 @@ class ImageScreenState extends State<ImageScreen> {
         return Container(
             margin: EdgeInsets.all(8.0),
             child: GridView.builder(
-                itemCount: imageList.length,
+                itemCount: imageList.length-15,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     childAspectRatio: 1.0,
